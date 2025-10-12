@@ -1,0 +1,9 @@
+ What we've set up:
+  - PostgreSQL database on port 5432
+    - Username: admin
+    - Password: admin123
+    - Database name: mydb
+  - pgAdmin (web UI for managing PostgreSQL) on port 5050
+    - Email: admin@admin.com
+    - Password: admin123
+    - Access at: http://localhost:5050
