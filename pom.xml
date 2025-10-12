@@ -13,8 +13,8 @@
     <description>A comprehensive Kafka producer-consumer demonstration application</description>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <kafka.version>3.6.0</kafka.version>
@@ -24,6 +24,8 @@
         <junit.version>5.10.0</junit.version>
         <maven.surefire.version>3.2.2</maven.surefire.version>
         <maven.compiler.version>3.11.0</maven.compiler.version>
+        <postgresql.version>42.7.1</postgresql.version>
+        <hikaricp.version>5.1.0</hikaricp.version>
     </properties>
 
     <dependencies>
@@ -61,6 +63,20 @@
             <version>${jackson.version}</version>
         </dependency>
 
+        <!-- PostgreSQL JDBC Driver -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
+        </dependency>
+
+        <!-- HikariCP Connection Pool -->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>${hikaricp.version}</version>
+        </dependency>
+
         <!-- Test Dependencies -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -84,8 +100,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven.compiler.version}</version>
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
+                    <source>17</source>
+                    <target>17</target>
                 </configuration>
             </plugin>
 
