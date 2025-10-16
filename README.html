@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README</title>
+  <style>
+
+html {
+color: #1a1a1a;
+background-color: #fdfdfd;
+}
+body {
+margin: 0 auto;
+max-width: 36em;
+padding-left: 50px;
+padding-right: 50px;
+padding-top: 50px;
+padding-bottom: 50px;
+hyphens: auto;
+overflow-wrap: break-word;
+text-rendering: optimizeLegibility;
+font-kerning: normal;
+}
+@media (max-width: 600px) {
+body {
+font-size: 0.9em;
+padding: 12px;
+}
+h1 {
+font-size: 1.8em;
+}
+}
+@media print {
+html {
+background-color: white;
+}
+body {
+background-color: transparent;
+color: black;
+font-size: 12pt;
+}
+p, h2, h3 {
+orphans: 3;
+widows: 3;
+}
+h2, h3, h4 {
+page-break-after: avoid;
+}
+}
+p {
+margin: 1em 0;
+}
+a {
+color: #1a1a1a;
+}
+a:visited {
+color: #1a1a1a;
+}
+img {
+max-width: 100%;
+}
+svg {
+height: auto;
+max-width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+margin-top: 1.4em;
+}
+h5, h6 {
+font-size: 1em;
+font-style: italic;
+}
+h6 {
+font-weight: normal;
+}
+ol, ul {
+padding-left: 1.7em;
+margin-top: 1em;
+}
+li > ol, li > ul {
+margin-top: 0;
+}
+blockquote {
+margin: 1em 0 1em 1.7em;
+padding-left: 1em;
+border-left: 2px solid #e6e6e6;
+color: #606060;
+}
+code {
+font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+font-size: 85%;
+margin: 0;
+hyphens: manual;
+}
+pre {
+margin: 1em 0;
+overflow: auto;
+}
+pre code {
+padding: 0;
+overflow: visible;
+overflow-wrap: normal;
+}
+.sourceCode {
+background-color: transparent;
+overflow: visible;
+}
+hr {
+border: none;
+border-top: 1px solid #1a1a1a;
+height: 1px;
+margin: 1em 0;
+}
+table {
+margin: 1em 0;
+border-collapse: collapse;
+width: 100%;
+overflow-x: auto;
+display: block;
+font-variant-numeric: lining-nums tabular-nums;
+}
+table caption {
+margin-bottom: 0.75em;
+}
+tbody {
+margin-top: 0.5em;
+border-top: 1px solid #1a1a1a;
+border-bottom: 1px solid #1a1a1a;
+}
+th {
+border-top: 1px solid #1a1a1a;
+padding: 0.25em 0.5em 0.25em 0.5em;
+}
+td {
+padding: 0.125em 0.5em 0.25em 0.5em;
+}
+header {
+margin-bottom: 4em;
+text-align: center;
+}
+#TOC li {
+list-style: none;
+}
+#TOC ul {
+padding-left: 1.3em;
+}
+#TOC > ul {
+padding-left: 0;
+}
+#TOC a:not(:hover) {
+text-decoration: none;
+}
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+</head>
+<body>
+<h1 id="kafka-producer-consumer-demo">Kafka Producer-Consumer Demo</h1>
+<p>A comprehensive Java Kafka application demonstrating
+producer-consumer patterns with proper error handling, logging, and
+production-ready practices.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li><strong>Complete Kafka Implementation</strong>: Full-featured
+producer and consumer classes</li>
+<li><strong>Configuration Management</strong>: Externalized
+configuration with properties files</li>
+<li><strong>Error Handling</strong>: Robust error handling and retry
+mechanisms</li>
+<li><strong>Logging</strong>: Comprehensive logging with SLF4J and
+Logback</li>
+<li><strong>Docker Support</strong>: Docker Compose setup for local
+Kafka development</li>
+<li><strong>Multiple Run Modes</strong>: Interactive, demo,
+producer-only, and consumer-only modes</li>
+<li><strong>Production Ready</strong>: Best practices for production
+deployment</li>
+</ul>
+<h2 id="project-structure">Project Structure</h2>
+<pre><code>kafka-producer-consumer/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/example/kafka/
+│   │   │       ├── config/
+│   │   │       │   └── KafkaConfig.java          # Configuration management
+│   │   │       ├── model/
+│   │   │       │   └── Message.java              # Message model
+│   │   │       ├── producer/
+│   │   │       │   └── KafkaProducer.java        # Producer implementation
+│   │   │       ├── consumer/
+│   │   │       │   └── KafkaConsumer.java        # Consumer implementation
+│   │   │       └── KafkaApplication.java         # Main application
+│   │   └── resources/
+│   │       ├── kafka.properties                  # Kafka configuration
+│   │       ├── application.properties           # Application configuration
+│   │       └── logback.xml                      # Logging configuration
+│   └── test/
+│       └── java/
+├── docker-compose.yml                           # Kafka Docker setup
+├── pom.xml                                      # Maven dependencies
+├── .gitignore                                   # Git ignore rules
+└── README.md                                    # This file</code></pre>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li><strong>Java 11</strong> or higher</li>
+<li><strong>Maven 3.6</strong> or higher</li>
+<li><strong>Docker &amp; Docker Compose</strong> (for local Kafka
+setup)</li>
+</ul>
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="clone-and-build">1. Clone and Build</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="op">&lt;</span>repository-url<span class="op">&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> kafka-producer-consumer</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">mvn</span> clean compile</span></code></pre></div>
+<h3 id="start-kafka-with-docker">2. Start Kafka with Docker</h3>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Start Kafka, Zookeeper, and Kafka UI</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-compose</span> up <span class="at">-d</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Wait for services to be ready (about 30-60 seconds)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-compose</span> logs <span class="at">-f</span> kafka-init</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify services are running</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-compose</span> ps</span></code></pre></div>
+<h3 id="run-the-application">3. Run the Application</h3>
+<h4 id="interactive-mode-default">Interactive Mode (Default)</h4>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mvn</span> exec:java</span></code></pre></div>
+<h4 id="demo-mode-automated">Demo Mode (Automated)</h4>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mvn</span> exec:java <span class="at">-Dexec.args</span><span class="op">=</span><span class="st">&quot;demo&quot;</span></span></code></pre></div>
+<h4 id="producer-only">Producer Only</h4>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mvn</span> exec:java <span class="at">-Dexec.args</span><span class="op">=</span><span class="st">&quot;producer&quot;</span></span></code></pre></div>
+<h4 id="consumer-only">Consumer Only</h4>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mvn</span> exec:java <span class="at">-Dexec.args</span><span class="op">=</span><span class="st">&quot;consumer&quot;</span></span></code></pre></div>
+<h2 id="configuration">Configuration</h2>
+<h3 id="kafka-configuration-srcmainresourceskafka.properties">Kafka
+Configuration (<code>src/main/resources/kafka.properties</code>)</h3>
+<p>Key configuration parameters:</p>
+<pre class="properties"><code># Broker
+bootstrap.servers=localhost:9092
+
+# Producer
+producer.acks=all                    # Wait for all replicas
+producer.retries=3                   # Retry failed sends
+producer.batch.size=16384            # Batch size for efficiency
+
+# Consumer
+consumer.group.id=kafka-demo-group   # Consumer group
+consumer.auto.offset.reset=earliest  # Read from beginning
+consumer.enable.auto.commit=true     # Auto-commit offsets
+
+# Topic
+topic.name=demo-topic
+topic.partitions=3
+topic.replication.factor=1</code></pre>
+<h3 id="application-configuration-srcmainresourcesapplication.properties">Application
+Configuration
+(<code>src/main/resources/application.properties</code>)</h3>
+<pre class="properties"><code>app.name=Kafka Producer Consumer Demo
+kafka.config.file=kafka.properties
+logging.level.com.example.kafka=DEBUG</code></pre>
+<h2 id="usage-examples">Usage Examples</h2>
+<h3 id="demo-mode">Demo Mode</h3>
+<p>Runs automated producer and consumer for demonstration:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mvn</span> exec:java <span class="at">-Dexec.args</span><span class="op">=</span><span class="st">&quot;demo&quot;</span></span></code></pre></div>
+<p>This will: 1. Start a consumer in the background 2. Send 10 demo
+messages 3. Display received messages 4. Automatically shutdown after 15
+seconds</p>
+<h3 id="interactive-producer">Interactive Producer</h3>
+<p>Send custom messages:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mvn</span> exec:java <span class="at">-Dexec.args</span><span class="op">=</span><span class="st">&quot;producer&quot;</span></span></code></pre></div>
+<p>Type messages and press Enter. Type <code>quit</code> to exit.</p>
+<h3 id="interactive-consumer">Interactive Consumer</h3>
+<p>Listen for messages:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mvn</span> exec:java <span class="at">-Dexec.args</span><span class="op">=</span><span class="st">&quot;consumer&quot;</span></span></code></pre></div>
+<p>Press <code>Ctrl+C</code> to stop the consumer.</p>
+<h2 id="docker-services">Docker Services</h2>
+<p>The Docker Compose setup includes:</p>
+<h3 id="kafka-broker">Kafka Broker</h3>
+<ul>
+<li><strong>Port</strong>: 9092 (external), 29092 (internal)</li>
+<li><strong>Image</strong>: confluentinc/cp-kafka:7.5.0</li>
+</ul>
+<h3 id="zookeeper">Zookeeper</h3>
+<ul>
+<li><strong>Port</strong>: 2181</li>
+<li><strong>Image</strong>: confluentinc/cp-zookeeper:7.5.0</li>
+</ul>
+<h3 id="kafka-ui">Kafka UI</h3>
+<ul>
+<li><strong>Port</strong>: 8080</li>
+<li><strong>URL</strong>: http://localhost:8080</li>
+<li><strong>Features</strong>: Topic management, message browsing,
+consumer group monitoring</li>
+</ul>
+<h3 id="topic-initialization">Topic Initialization</h3>
+<p>Automatically creates the <code>demo-topic</code> with 3
+partitions.</p>
+<h2 id="monitoring">Monitoring</h2>
+<h3 id="kafka-ui-dashboard">Kafka UI Dashboard</h3>
+<p>Access the web-based Kafka UI at: http://localhost:8080</p>
+<p>Features: - View topics and partitions - Browse messages - Monitor
+consumer groups - View broker information</p>
+<h3 id="application-logs">Application Logs</h3>
+<p>Logs are written to: - <strong>Console</strong>: Formatted output
+with timestamps - <strong>File</strong>: <code>logs/kafka-app.log</code>
+(rotating, 10MB max, 30 days retention)</p>
+<h3 id="log-levels">Log Levels</h3>
+<ul>
+<li><code>com.example.kafka</code>: DEBUG</li>
+<li><code>org.apache.kafka</code>: WARN</li>
+<li>Root level: INFO</li>
+</ul>
+<h2 id="production-considerations">Production Considerations</h2>
+<h3 id="configuration-1">Configuration</h3>
+<ul>
+<li>Adjust <code>acks</code>, <code>retries</code>, and
+<code>batch.size</code> for your throughput/durability needs</li>
+<li>Set appropriate <code>replication.factor</code> for production
+topics</li>
+<li>Configure <code>security.protocol</code> for secured clusters</li>
+</ul>
+<h3 id="error-handling">Error Handling</h3>
+<ul>
+<li>Producer: Implements retry logic and callback error handling</li>
+<li>Consumer: Graceful error handling with logging and recovery</li>
+</ul>
+<h3 id="monitoring-1">Monitoring</h3>
+<ul>
+<li>Enable JMX metrics for production monitoring</li>
+<li>Use Kafka’s built-in monitoring tools</li>
+<li>Implement custom health checks</li>
+</ul>
+<h3 id="security">Security</h3>
+<ul>
+<li>Configure SASL/SSL for secure communication</li>
+<li>Implement proper authentication and authorization</li>
+<li>Use secrets management for credentials</li>
+</ul>
+<h2 id="development">Development</h2>
+<h3 id="building">Building</h3>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mvn</span> clean compile</span></code></pre></div>
+<h3 id="testing">Testing</h3>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mvn</span> test</span></code></pre></div>
+<h3 id="packaging">Packaging</h3>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mvn</span> clean package</span></code></pre></div>
+<h3 id="running-tests-with-embedded-kafka">Running Tests with Embedded
+Kafka</h3>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mvn</span> test <span class="at">-Dtest</span><span class="op">=</span>KafkaIntegrationTest</span></code></pre></div>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="common-issues">Common Issues</h3>
+<h4 id="connection-refused">Connection Refused</h4>
+<pre><code>Error: Connection to node -1 could not be established</code></pre>
+<p><strong>Solution</strong>: Ensure Kafka is running:
+<code>docker-compose ps</code></p>
+<h4 id="topic-not-found">Topic Not Found</h4>
+<pre><code>Error: Topic &#39;demo-topic&#39; not found</code></pre>
+<p><strong>Solution</strong>: Check topic creation:
+<code>docker-compose logs kafka-init</code></p>
+<h4 id="port-already-in-use">Port Already in Use</h4>
+<pre><code>Error: Port 9092 is already in use</code></pre>
+<p><strong>Solution</strong>: Stop conflicting services or change ports
+in docker-compose.yml</p>
+<h3 id="docker-commands">Docker Commands</h3>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># View all services</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-compose</span> ps</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># View logs</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-compose</span> logs kafka</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-compose</span> logs zookeeper</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Restart services</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-compose</span> restart</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Stop and remove all services</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-compose</span> down</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove volumes (clean slate)</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-compose</span> down <span class="at">-v</span></span></code></pre></div>
+<h3 id="kafka-cli-tools-via-docker">Kafka CLI Tools (via Docker)</h3>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List topics</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-compose</span> exec kafka kafka-topics <span class="at">--bootstrap-server</span> localhost:9092 <span class="at">--list</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Describe topic</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-compose</span> exec kafka kafka-topics <span class="at">--bootstrap-server</span> localhost:9092 <span class="at">--describe</span> <span class="at">--topic</span> demo-topic</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Console producer</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-compose</span> exec kafka kafka-console-producer <span class="at">--bootstrap-server</span> localhost:9092 <span class="at">--topic</span> demo-topic</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Console consumer</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="ex">docker-compose</span> exec kafka kafka-console-consumer <span class="at">--bootstrap-server</span> localhost:9092 <span class="at">--topic</span> demo-topic <span class="at">--from-beginning</span></span></code></pre></div>
+<h2 id="license">License</h2>
+<p>This project is provided as-is for educational and demonstration
+purposes.</p>
+<h2 id="contributing">Contributing</h2>
+<p>Feel free to submit issues and enhancement requests!</p>
+<h2 id="learning-resources">Learning Resources</h2>
+<ul>
+<li><a href="https://kafka.apache.org/documentation/">Apache Kafka
+Documentation</a></li>
+<li><a href="https://kafka-tutorials.confluent.io/">Confluent Kafka
+Tutorials</a></li>
+<li><a href="https://spring.io/projects/spring-kafka">Spring Kafka
+Reference</a></li>
+</ul>
+</body>
+</html>

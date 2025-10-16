@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang xml:lang>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>S3_INTEGRATION_EXPLANATION</title>
+  <style>
+
+html {
+color: #1a1a1a;
+background-color: #fdfdfd;
+}
+body {
+margin: 0 auto;
+max-width: 36em;
+padding-left: 50px;
+padding-right: 50px;
+padding-top: 50px;
+padding-bottom: 50px;
+hyphens: auto;
+overflow-wrap: break-word;
+text-rendering: optimizeLegibility;
+font-kerning: normal;
+}
+@media (max-width: 600px) {
+body {
+font-size: 0.9em;
+padding: 12px;
+}
+h1 {
+font-size: 1.8em;
+}
+}
+@media print {
+html {
+background-color: white;
+}
+body {
+background-color: transparent;
+color: black;
+font-size: 12pt;
+}
+p, h2, h3 {
+orphans: 3;
+widows: 3;
+}
+h2, h3, h4 {
+page-break-after: avoid;
+}
+}
+p {
+margin: 1em 0;
+}
+a {
+color: #1a1a1a;
+}
+a:visited {
+color: #1a1a1a;
+}
+img {
+max-width: 100%;
+}
+svg {
+height: auto;
+max-width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+margin-top: 1.4em;
+}
+h5, h6 {
+font-size: 1em;
+font-style: italic;
+}
+h6 {
+font-weight: normal;
+}
+ol, ul {
+padding-left: 1.7em;
+margin-top: 1em;
+}
+li > ol, li > ul {
+margin-top: 0;
+}
+blockquote {
+margin: 1em 0 1em 1.7em;
+padding-left: 1em;
+border-left: 2px solid #e6e6e6;
+color: #606060;
+}
+code {
+font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+font-size: 85%;
+margin: 0;
+hyphens: manual;
+}
+pre {
+margin: 1em 0;
+overflow: auto;
+}
+pre code {
+padding: 0;
+overflow: visible;
+overflow-wrap: normal;
+}
+.sourceCode {
+background-color: transparent;
+overflow: visible;
+}
+hr {
+border: none;
+border-top: 1px solid #1a1a1a;
+height: 1px;
+margin: 1em 0;
+}
+table {
+margin: 1em 0;
+border-collapse: collapse;
+width: 100%;
+overflow-x: auto;
+display: block;
+font-variant-numeric: lining-nums tabular-nums;
+}
+table caption {
+margin-bottom: 0.75em;
+}
+tbody {
+margin-top: 0.5em;
+border-top: 1px solid #1a1a1a;
+border-bottom: 1px solid #1a1a1a;
+}
+th {
+border-top: 1px solid #1a1a1a;
+padding: 0.25em 0.5em 0.25em 0.5em;
+}
+td {
+padding: 0.125em 0.5em 0.25em 0.5em;
+}
+header {
+margin-bottom: 4em;
+text-align: center;
+}
+#TOC li {
+list-style: none;
+}
+#TOC ul {
+padding-left: 1.3em;
+}
+#TOC > ul {
+padding-left: 0;
+}
+#TOC a:not(:hover) {
+text-decoration: none;
+}
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+</head>
+<body>
+<h1 id="s3-blob-storage-integration---complete-explanation">S3 (Blob
+Storage) Integration - Complete Explanation</h1>
+<h2 id="what-problem-does-this-solve">🎯 What Problem Does This
+Solve?</h2>
+<h3 id="the-problem">The Problem:</h3>
+<p>You have a Kafka + Database system that handles messages. But what if
+you want to store <strong>FILES</strong> like: - 📷 Images - 📄 PDF
+documents - 🎥 Videos - 📦 Backups</p>
+<p><strong>You CANNOT store large files in a database!</strong> Why? -
+Databases get slow with large files - Expensive storage costs - Not
+designed for this purpose</p>
+<h3 id="the-solution-blob-storage-s3">The Solution: Blob Storage
+(S3)</h3>
+<p><strong>Blob = Binary Large Object</strong> (any file)</p>
+<pre><code>┌────────────────────────────────────────────────────────────┐
+│  WRONG WAY (Don&#39;t do this!)                                │
+├────────────────────────────────────────────────────────────┤
+│  Database                                                   │
+│  ├── users table                                            │
+│  ├── messages table                                         │
+│  └── files table                                            │
+│      ├── photo1.jpg (5MB) ❌ Too big!                      │
+│      ├── video.mp4 (100MB) ❌ Way too big!                 │
+│      └── document.pdf (2MB) ❌ Still not good              │
+└────────────────────────────────────────────────────────────┘</code></pre>
+<pre><code>┌────────────────────────────────────────────────────────────┐
+│  RIGHT WAY (Best practice!)                                 │
+├────────────────────────────────────────────────────────────┤
+│  S3 Storage                     Database                    │
+│  ├── photo1.jpg (5MB) ✅  →    ├── filename: photo1.jpg   │
+│  ├── video.mp4 (100MB) ✅ →    ├── size: 100MB            │
+│  └── document.pdf (2MB) ✅ →   └── s3_url: http://...     │
+│                                                             │
+│  Store ACTUAL FILES in S3       Store INFO in Database     │
+└────────────────────────────────────────────────────────────┘</code></pre>
+<hr />
+<h2 id="complete-architecture">🏗️ Complete Architecture</h2>
+<h3 id="your-new-system">Your New System:</h3>
+<pre><code>USER ACTION: &quot;Upload photo.jpg&quot;
+     │
+     ↓
+┌─────────────────────────────────────────────────────────────┐
+│ STEP 1: Java Application Receives File                      │
+│ - User uploads photo.jpg (5MB)                              │
+└─────────────────────────────────────────────────────────────┘
+     │
+     ↓
+┌─────────────────────────────────────────────────────────────┐
+│ STEP 2: Upload to S3 (MinIO)                                │
+│ - S3Manager.uploadFile(photo.jpg, &quot;uploads/photo.jpg&quot;)     │
+│ - File stored in S3 bucket                                  │
+│ - Returns URL: http://localhost:9000/mybucket/photo.jpg    │
+└─────────────────────────────────────────────────────────────┘
+     │
+     ↓
+┌─────────────────────────────────────────────────────────────┐
+│ STEP 3: Create Metadata Object                              │
+│ FileMetadata metadata = new FileMetadata();                 │
+│ - filename: &quot;photo.jpg&quot;                                     │
+│ - s3Url: &quot;http://localhost:9000/mybucket/photo.jpg&quot;        │
+│ - fileSize: 5242880 bytes                                   │
+│ - uploadedAt: 1696500000000                                 │
+└─────────────────────────────────────────────────────────────┘
+     │
+     ↓
+┌─────────────────────────────────────────────────────────────┐
+│ STEP 4: Send Message to Kafka                               │
+│ - KafkaProducer.send(metadata)                             │
+│ - Message: &quot;File uploaded: photo.jpg&quot;                       │
+│ - Contains all metadata as JSON                             │
+└─────────────────────────────────────────────────────────────┘
+     │
+     ↓
+┌─────────────────────────────────────────────────────────────┐
+│ STEP 5: Consumer Receives from Kafka                        │
+│ - KafkaConsumer reads metadata message                      │
+│ - Processes file upload event                               │
+└─────────────────────────────────────────────────────────────┘
+     │
+     ↓
+┌─────────────────────────────────────────────────────────────┐
+│ STEP 6: Save Metadata to Database                           │
+│ - FileRepository.insertFileMetadata(metadata)               │
+│ - Stores in PostgreSQL &quot;files&quot; table                        │
+│ - Now you can search and query file info!                   │
+└─────────────────────────────────────────────────────────────┘
+     │
+     ↓
+┌─────────────────────────────────────────────────────────────┐
+│ RESULT: Complete!                                            │
+│ ✅ File stored in S3                                        │
+│ ✅ Event logged in Kafka                                    │
+│ ✅ Metadata saved in Database                               │
+│ ✅ Can query database to find files                         │
+│ ✅ Can download files from S3                               │
+└─────────────────────────────────────────────────────────────┘</code></pre>
+<hr />
+<h2 id="understanding-the-components">💡 Understanding the
+Components</h2>
+<h3 id="minio-local-s3">1. MinIO (Local S3)</h3>
+<p><strong>What is it?</strong> - Open-source object storage - 100%
+compatible with Amazon S3 API - Runs on your computer (no cloud needed
+for learning)</p>
+<p><strong>Access:</strong> - <strong>API Endpoint</strong>:
+http://localhost:9000 - <strong>Web Console</strong>:
+http://localhost:9001 - <strong>Username</strong>: minioadmin -
+<strong>Password</strong>: minioadmin123</p>
+<p><strong>What can you do?</strong> - Upload files via API or web
+interface - Download files - Delete files - List all files - Set
+permissions</p>
+<h3 id="s3manager-java-class">2. S3Manager (Java Class)</h3>
+<p><strong>What does it do?</strong> Handles ALL interactions with
+S3:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>S3Manager s3 <span class="op">=</span> <span class="kw">new</span> <span class="fu">S3Manager</span><span class="op">(</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;http://localhost:9000&quot;</span><span class="op">,</span>  <span class="co">// MinIO endpoint</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;minioadmin&quot;</span><span class="op">,</span>              <span class="co">// Access key</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;minioadmin123&quot;</span><span class="op">,</span>           <span class="co">// Secret key</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;my-files&quot;</span>                 <span class="co">// Bucket name</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="op">);</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Upload a file</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="bu">String</span> url <span class="op">=</span> s3<span class="op">.</span><span class="fu">uploadFile</span><span class="op">(</span>myFile<span class="op">,</span> <span class="st">&quot;uploads/photo.jpg&quot;</span><span class="op">);</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">// Returns: &quot;http://localhost:9000/my-files/uploads/photo.jpg&quot;</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">// Download a file</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>s3<span class="op">.</span><span class="fu">downloadFile</span><span class="op">(</span><span class="st">&quot;uploads/photo.jpg&quot;</span><span class="op">,</span> Path<span class="op">.</span><span class="fu">of</span><span class="op">(</span><span class="st">&quot;downloaded.jpg&quot;</span><span class="op">));</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">// Delete a file</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>s3<span class="op">.</span><span class="fu">deleteFile</span><span class="op">(</span><span class="st">&quot;uploads/photo.jpg&quot;</span><span class="op">);</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">// List all files</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="bu">List</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">&gt;</span> files <span class="op">=</span> s3<span class="op">.</span><span class="fu">listFiles</span><span class="op">();</span></span></code></pre></div>
+<h3 id="filemetadata-model-class">3. FileMetadata (Model Class)</h3>
+<p><strong>What is it?</strong> A Java object that holds information
+ABOUT a file:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>FileMetadata metadata <span class="op">=</span> <span class="kw">new</span> <span class="fu">FileMetadata</span><span class="op">();</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>metadata<span class="op">.</span><span class="fu">setFilename</span><span class="op">(</span><span class="st">&quot;photo.jpg&quot;</span><span class="op">);</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>metadata<span class="op">.</span><span class="fu">setS3Key</span><span class="op">(</span><span class="st">&quot;uploads/photo.jpg&quot;</span><span class="op">);</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>metadata<span class="op">.</span><span class="fu">setS3Url</span><span class="op">(</span><span class="st">&quot;http://localhost:9000/my-files/uploads/photo.jpg&quot;</span><span class="op">);</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>metadata<span class="op">.</span><span class="fu">setFileSize</span><span class="op">(</span><span class="dv">5242880</span><span class="op">);</span>  <span class="co">// 5MB in bytes</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>metadata<span class="op">.</span><span class="fu">setContentType</span><span class="op">(</span><span class="st">&quot;image/jpeg&quot;</span><span class="op">);</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>metadata<span class="op">.</span><span class="fu">setUploadedBy</span><span class="op">(</span><span class="st">&quot;user123&quot;</span><span class="op">);</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>metadata<span class="op">.</span><span class="fu">setUploadedAt</span><span class="op">(</span><span class="bu">System</span><span class="op">.</span><span class="fu">currentTimeMillis</span><span class="op">());</span></span></code></pre></div>
+<p><strong>This metadata is stored in PostgreSQL, NOT the file
+itself!</strong></p>
+<h3 id="filerepository-database-operations">4. FileRepository (Database
+Operations)</h3>
+<p><strong>What does it do?</strong> Saves and retrieves file metadata
+from PostgreSQL:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode java"><code class="sourceCode java"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>FileRepository repo <span class="op">=</span> <span class="kw">new</span> <span class="fu">FileRepository</span><span class="op">();</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">// Save metadata</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>repo<span class="op">.</span><span class="fu">insertFileMetadata</span><span class="op">(</span>metadata<span class="op">);</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">// Find all files</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="bu">List</span><span class="op">&lt;</span>FileMetadata<span class="op">&gt;</span> allFiles <span class="op">=</span> repo<span class="op">.</span><span class="fu">getAllFiles</span><span class="op">();</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">// Find files by user</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="bu">List</span><span class="op">&lt;</span>FileMetadata<span class="op">&gt;</span> userFiles <span class="op">=</span> repo<span class="op">.</span><span class="fu">getFilesByUser</span><span class="op">(</span><span class="st">&quot;user123&quot;</span><span class="op">);</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">// Search by filename</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>FileMetadata found <span class="op">=</span> repo<span class="op">.</span><span class="fu">getFileByFilename</span><span class="op">(</span><span class="st">&quot;photo.jpg&quot;</span><span class="op">);</span></span></code></pre></div>
+<hr />
+<h2 id="database-schema">📊 Database Schema</h2>
+<h3 id="new-table-files">New Table: <code>files</code></h3>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> files (</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">id</span> <span class="dt">VARCHAR</span>(<span class="dv">255</span>) <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    filename <span class="dt">VARCHAR</span>(<span class="dv">500</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    s3_key <span class="dt">VARCHAR</span>(<span class="dv">1000</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    s3_url <span class="dt">VARCHAR</span>(<span class="dv">1000</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    file_size BIGINT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    content_type <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    uploaded_by <span class="dt">VARCHAR</span>(<span class="dv">255</span>),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    uploaded_at BIGINT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    description TEXT,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    created_at <span class="dt">TIMESTAMP</span> <span class="kw">DEFAULT</span> <span class="fu">CURRENT_TIMESTAMP</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+<p><strong>What gets stored:</strong> - ✅ Filename - ✅ Location in S3
+(s3_key) - ✅ URL to access file - ✅ File size - ✅ Who uploaded it -
+✅ When it was uploaded</p>
+<p><strong>What does NOT get stored:</strong> - ❌ The actual file
+content - ❌ File binary data</p>
+<hr />
+<h2 id="complete-data-flow-example">🔄 Complete Data Flow Example</h2>
+<h3 id="example-user-uploads-report.pdf">Example: User uploads
+“report.pdf”</h3>
+<pre><code>1. USER UPLOADS FILE
+   - File: report.pdf (2MB)
+   - Uploaded by: alice
+
+2. JAVA APP RECEIVES FILE
+   InputStream fileStream = request.getInputStream();
+
+3. UPLOAD TO S3
+   String s3Key = &quot;documents/2024/report.pdf&quot;;
+   String url = s3Manager.uploadFile(file, s3Key);
+   // S3 stores the file
+   // Returns: http://localhost:9000/mybucket/documents/2024/report.pdf
+
+4. CREATE METADATA
+   FileMetadata meta = new FileMetadata();
+   meta.setId(UUID.randomUUID().toString());
+   meta.setFilename(&quot;report.pdf&quot;);
+   meta.setS3Key(&quot;documents/2024/report.pdf&quot;);
+   meta.setS3Url(url);
+   meta.setFileSize(2097152);  // 2MB
+   meta.setContentType(&quot;application/pdf&quot;);
+   meta.setUploadedBy(&quot;alice&quot;);
+   meta.setUploadedAt(System.currentTimeMillis());
+
+5. SEND TO KAFKA
+   kafkaProducer.sendFileMetadata(meta);
+   // Kafka message: {&quot;filename&quot;:&quot;report.pdf&quot;, &quot;s3Url&quot;:&quot;...&quot;, ...}
+
+6. CONSUMER RECEIVES
+   consumer.start((fileMetadata, record) -&gt; {
+       System.out.println(&quot;File uploaded: &quot; + fileMetadata.getFilename());
+
+       // Save to database
+       fileRepository.insertFileMetadata(fileMetadata);
+   });
+
+7. SAVED IN DATABASE
+   Database now has:
+   - Filename: report.pdf
+   - S3 URL: http://localhost:9000/mybucket/documents/2024/report.pdf
+   - Size: 2MB
+   - Uploaded by: alice
+   - Uploaded at: 2024-10-12 15:30:00
+
+8. QUERY ANYTIME
+   // Find alice&#39;s files
+   List&lt;FileMetadata&gt; files = repo.getFilesByUser(&quot;alice&quot;);
+
+   // Download the file
+   FileMetadata file = files.get(0);
+   s3Manager.downloadFile(file.getS3Key(), Path.of(&quot;downloaded-report.pdf&quot;));</code></pre>
+<hr />
+<h2 id="real-world-use-cases">🌟 Real-World Use Cases</h2>
+<h3 id="document-management-system">1. <strong>Document Management
+System</strong></h3>
+<ul>
+<li>Users upload contracts, invoices, reports</li>
+<li>Files stored in S3</li>
+<li>Metadata in database for easy searching</li>
+<li>Example: “Show me all PDF files uploaded by John in September”</li>
+</ul>
+<h3 id="photo-sharing-app-like-instagram">2. <strong>Photo Sharing
+App</strong> (like Instagram)</h3>
+<ul>
+<li>Users upload photos</li>
+<li>Photos stored in S3</li>
+<li>Database has: likes, comments, upload time</li>
+<li>Can search: “Show me photos with more than 100 likes”</li>
+</ul>
+<h3 id="video-platform-like-youtube">3. <strong>Video Platform</strong>
+(like YouTube)</h3>
+<ul>
+<li>Videos stored in S3 (too big for database!)</li>
+<li>Database has: title, description, views, duration</li>
+<li>Kafka processes upload events</li>
+<li>Can search and filter videos by metadata</li>
+</ul>
+<h3 id="backup-system">4. <strong>Backup System</strong></h3>
+<ul>
+<li>Application creates daily backups</li>
+<li>Backups stored in S3</li>
+<li>Database tracks: backup date, size, status</li>
+<li>Can easily find and restore old backups</li>
+</ul>
+<hr />
+<h2 id="why-this-architecture-is-powerful">⚡ Why This Architecture is
+Powerful</h2>
+<h3 id="advantages">Advantages:</h3>
+<ol type="1">
+<li><strong>Scalability</strong>
+<ul>
+<li>S3 can store unlimited files</li>
+<li>Database only stores small metadata</li>
+<li>Both can scale independently</li>
+</ul></li>
+<li><strong>Performance</strong>
+<ul>
+<li>Database queries are fast (no large files)</li>
+<li>S3 optimized for file serving</li>
+<li>Kafka handles async processing</li>
+</ul></li>
+<li><strong>Cost-Effective</strong>
+<ul>
+<li>S3 storage is cheap</li>
+<li>Database storage is expensive</li>
+<li>Only pay for what you use</li>
+</ul></li>
+<li><strong>Reliability</strong>
+<ul>
+<li>Kafka ensures no events are lost</li>
+<li>Database provides transaction safety</li>
+<li>S3 has built-in redundancy</li>
+</ul></li>
+<li><strong>Flexibility</strong>
+<ul>
+<li>Can store any file type</li>
+<li>Easy to add features (thumbnails, compression)</li>
+<li>Can migrate to real AWS S3 later</li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="security-considerations">🔒 Security Considerations</h2>
+<h3 id="what-well-implement">What we’ll implement:</h3>
+<ol type="1">
+<li><strong>Access Control</strong>
+<ul>
+<li>Only authenticated users can upload</li>
+<li>Users can only access their own files</li>
+</ul></li>
+<li><strong>File Validation</strong>
+<ul>
+<li>Check file type</li>
+<li>Limit file size</li>
+<li>Scan for malware (in production)</li>
+</ul></li>
+<li><strong>Secure URLs</strong>
+<ul>
+<li>Pre-signed URLs for downloads</li>
+<li>Expiring links</li>
+<li>No direct public access</li>
+</ul></li>
+</ol>
+<hr />
+<h2 id="next-steps">📈 Next Steps</h2>
+<p>After this integration, you’ll be able to:</p>
+<p>✅ Upload files to S3 ✅ Track file metadata in database ✅ Send file
+events through Kafka ✅ Query and search for files ✅ Download files
+from S3 ✅ View everything in pgAdmin and MinIO console</p>
+<p>This is the EXACT architecture used by companies like: -
+<strong>Dropbox</strong> - File storage platform -
+<strong>Netflix</strong> - Video content storage -
+<strong>Spotify</strong> - Audio file storage - <strong>GitHub</strong>
+- Repository file storage</p>
+<p>You’re building enterprise-grade systems! 🚀</p>
+<hr />
+<h2 id="key-concepts-recap">🎓 Key Concepts Recap</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>What it is</th>
+<th>Where it lives</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Blob</strong></td>
+<td>Actual file (binary data)</td>
+<td>S3 (MinIO)</td>
+</tr>
+<tr>
+<td><strong>Metadata</strong></td>
+<td>Information about file</td>
+<td>PostgreSQL Database</td>
+</tr>
+<tr>
+<td><strong>Event</strong></td>
+<td>“File uploaded” notification</td>
+<td>Kafka</td>
+</tr>
+<tr>
+<td><strong>S3Manager</strong></td>
+<td>Java class for S3 operations</td>
+<td>Your application</td>
+</tr>
+<tr>
+<td><strong>FileRepository</strong></td>
+<td>Java class for DB operations</td>
+<td>Your application</td>
+</tr>
+<tr>
+<td><strong>S3 Bucket</strong></td>
+<td>Container for files</td>
+<td>S3 (like a folder)</td>
+</tr>
+<tr>
+<td><strong>Object Key</strong></td>
+<td>File path in S3</td>
+<td>“uploads/photo.jpg”</td>
+</tr>
+<tr>
+<td><strong>Content Type</strong></td>
+<td>File format</td>
+<td>“image/jpeg”, “application/pdf”</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>Ready to see this in action? Let’s build the rest of the integration!
+🎉</p>
+</body>
+</html>
