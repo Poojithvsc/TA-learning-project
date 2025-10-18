@@ -90,6 +90,13 @@ public class DatabaseManager {
     }
 
     /**
+     * Get the DataSource (for repositories that need it)
+     */
+    public HikariDataSource getDataSource() {
+        return dataSource;
+    }
+
+    /**
      * Test the database connection
      */
     public boolean testConnection() {

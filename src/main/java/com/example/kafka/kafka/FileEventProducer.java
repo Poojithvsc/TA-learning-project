@@ -105,6 +105,13 @@ public class FileEventProducer {
     }
 
     /**
+     * Send file downloaded event
+     */
+    public void sendDownloadedEvent(FileMetadata fileMetadata) {
+        sendFileEvent(fileMetadata, "DOWNLOADED");
+    }
+
+    /**
      * Flush and close producer
      */
     public void close() {

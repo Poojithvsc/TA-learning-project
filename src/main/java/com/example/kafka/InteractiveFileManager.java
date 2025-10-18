@@ -2,6 +2,7 @@ package com.example.kafka;
 
 import com.example.kafka.db.DatabaseManager;
 import com.example.kafka.db.FileRepository;
+import com.example.kafka.db.FileEventRepository;
 import com.example.kafka.kafka.FileEventConsumer;
 import com.example.kafka.kafka.FileEventProducer;
 import com.example.kafka.model.FileMetadata;
@@ -36,6 +37,7 @@ public class InteractiveFileManager {
 
     private final S3Manager s3Manager;
     private final FileRepository fileRepository;
+    private final FileEventRepository eventRepository;
     private final DatabaseManager dbManager;
     private final FileEventProducer eventProducer;
     private final FileEventConsumer eventConsumer;
@@ -63,6 +65,10 @@ public class InteractiveFileManager {
         } catch (SQLException e) {
             throw new RuntimeException("Failed to create files table", e);
         }
+
+        // Initialize Event Repository
+        this.eventRepository = new FileEventRepository(dbManager.getDataSource());
+        logger.info("✓ Event tracking ready\n");
 
         // Initialize S3
         logger.info("Connecting to MinIO (S3)...");
@@ -101,6 +107,13 @@ public class InteractiveFileManager {
     private void startEventConsumer() {
         consumerThread = new Thread(() -> {
             eventConsumer.start(event -> {
+                // Save event to database
+                eventRepository.recordEvent(
+                    event.getFileMetadata(),
+                    event.getEventType()
+                );
+
+                // Display event notification
                 System.out.println("\n╔════════════════════════════════════════════════════════╗");
                 System.out.println("║  📨 KAFKA EVENT RECEIVED                              ║");
                 System.out.println("╚════════════════════════════════════════════════════════╝");
@@ -109,6 +122,7 @@ public class InteractiveFileManager {
                 System.out.println("  Size: " + event.getFileMetadata().getFileSizeFormatted());
                 System.out.println("  User: " + event.getFileMetadata().getUploadedBy());
                 System.out.println("  Time: " + new java.util.Date(event.getTimestamp()));
+                System.out.println("  ✓ Saved to database");
                 System.out.println("════════════════════════════════════════════════════════\n");
             });
         });
