@@ -167,6 +167,17 @@ public class S3Manager {
         logger.info("Downloading file from S3: {}", objectKey);
 
         try {
+            // If file exists, delete it first
+            if (Files.exists(destinationPath)) {
+                logger.info("File already exists, deleting: {}", destinationPath);
+                Files.delete(destinationPath);
+            }
+
+            // Create parent directories if they don't exist
+            if (destinationPath.getParent() != null) {
+                Files.createDirectories(destinationPath.getParent());
+            }
+
             s3Client.getObject(
                     GetObjectRequest.builder()
                             .bucket(bucketName)
